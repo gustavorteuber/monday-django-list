@@ -133,5 +133,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "DjangoApp DoList Gustavorteuber API",
+    "DESCRIPTION": "API para gerenciamento de empresas, incluindo endpoints e documentação.",
+    "VERSION": "1.0.0",
+}
+
 
 AUTH_USER_MODEL = "core.Usuario"
