@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, SlugRelatedField
-from core.models import Usuario, Grupos, Tarefas, Topic, conjTopic
+from core.models import Usuario, Grupos, Tarefas, Topic, conjTopic, CreateGp
 from uploader.models import Image
 from uploader.serializers import ImageSerializer
 
@@ -128,3 +128,14 @@ class DetailconjTopicSerializer(ModelSerializer):
         fields = "__all__"
         depth = 2
       
+class CreateGpSerializer(ModelSerializer):
+    class Meta:
+        model = CreateGp
+        fields = "__all__"
+
+
+class DetailCreateGpSerializer(ModelSerializer):
+    class Meta:
+        model = CreateGp
+        fields = "__all__"
+        depth = 2

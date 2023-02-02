@@ -1,7 +1,7 @@
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
-from core.models import Usuario, Tarefas, Grupos, Topic, conjTopic
-from core.serializers import UsuarioSerializer, UsuarioCreateSerializer, TarefasSerializer, DetailTarefasSerializer, GruposSerializer, DetailGruposSerializer, TopicSerializer, DetailTopicSerializer, conjTopicSerializer, DetailconjTopicSerializer
+from core.models import Usuario, Tarefas, Grupos, Topic, conjTopic, CreateGp
+from core.serializers import UsuarioSerializer, UsuarioCreateSerializer, TarefasSerializer, DetailTarefasSerializer, GruposSerializer, DetailGruposSerializer, TopicSerializer, DetailTopicSerializer, conjTopicSerializer, DetailconjTopicSerializer, CreateGpSerializer, DetailCreateGpSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -71,3 +71,13 @@ class conjTopicViewSet(ModelViewSet):
         if self.action in ["list", "retrieve"]:
             return DetailconjTopicSerializer
         return conjTopicSerializer
+
+class CreateGpViewSet(ModelViewSet):
+    queryset = CreateGp.objects.all()
+    serializer_class = CreateGpSerializer 
+    permission_classes = [AllowAny]
+
+    def get_serializer_class(self):
+        if self.action in ["list", "retrieve"]:
+            return DetailCreateGpSerializer
+        return CreateGpSerializer 

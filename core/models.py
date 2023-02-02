@@ -16,14 +16,24 @@ class Usuario(AbstractUser):
         default="",
     )
 
-class Grupos(models.Model):
+
+class CreateGp(models.Model):
     Nome = models.CharField(max_length=200, blank=True)
-    Participantes = models.ManyToManyField(Usuario)
-    Criado = models.DateTimeField(default=timezone.now)
-    Alterado = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.Nome
+
+     
+
+
+class Grupos(models.Model):
+    Gp = models.ManyToManyField(CreateGp)
+    Participantes = models.ManyToManyField(Usuario, blank=True)
+    Criado = models.DateTimeField(default=timezone.now)
+    Alterado = models.DateTimeField(auto_now=True)
+
+    # def __str__(self):
+    #     return self.Criado
 
 
 class Tarefas(models.Model):

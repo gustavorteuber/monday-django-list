@@ -18,6 +18,8 @@ from core.views import (
     MyTokenObtainPairView,
     TopicViewSet,
     conjTopicViewSet,
+    CreateGpViewSet,
+
 
 )
 
@@ -28,11 +30,13 @@ from uploader.router import router as uploader_router
 
 
 router = DefaultRouter()
-router.register(r'tarefa', TarefasViewSet)
 router.register(r'usuario', UsuarioViewSet)
+router.register(r'creategp', CreateGpViewSet)
 router.register(r'grupos', GruposViewSet)
+router.register(r'tarefa', TarefasViewSet)
 router.register(r'addtopic', TopicViewSet)
 router.register(r'conjtopic', conjTopicViewSet)
+
 
 
 
