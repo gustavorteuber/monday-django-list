@@ -16,6 +16,9 @@ from core.views import (
     UsuarioViewSet,
     GruposViewSet,
     MyTokenObtainPairView,
+    TopicViewSet,
+    conjTopicViewSet,
+
 )
 
 
@@ -28,6 +31,10 @@ router = DefaultRouter()
 router.register(r'tarefa', TarefasViewSet)
 router.register(r'usuario', UsuarioViewSet)
 router.register(r'grupos', GruposViewSet)
+router.register(r'addtopic', TopicViewSet)
+router.register(r'conjtopic', conjTopicViewSet)
+
+
 
 
 

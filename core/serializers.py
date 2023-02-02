@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, SlugRelatedField
-from core.models import Usuario, Grupos, Tarefas
+from core.models import Usuario, Grupos, Tarefas, Topic, conjTopic
 from uploader.models import Image
 from uploader.serializers import ImageSerializer
 
@@ -89,7 +89,7 @@ class DetailGruposSerializer(ModelSerializer):
     class Meta:
         model = Grupos
         fields = "__all__"
-        depth = 1
+        depth = 2
       
 class TarefasSerializer(ModelSerializer):
     class Meta:
@@ -101,6 +101,30 @@ class DetailTarefasSerializer(ModelSerializer):
     class Meta:
         model = Tarefas
         fields = "__all__"
+        depth = 2
+      
+class TopicSerializer(ModelSerializer):
+    class Meta:
+        model = Topic
+        fields = "__all__"
+
+
+class DetailTopicSerializer(ModelSerializer):
+    class Meta:
+        model = Topic
+        fields = "__all__"
         depth = 1
       
 
+class conjTopicSerializer(ModelSerializer):
+    class Meta:
+        model = conjTopic
+        fields = "__all__"
+
+
+class DetailconjTopicSerializer(ModelSerializer):
+    class Meta:
+        model = conjTopic
+        fields = "__all__"
+        depth = 2
+      
