@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "dolist-django"
+version = "0.1.0"
+description = "do-list"
+authors = ["gustavorteuber <gugareis135@gmail.com>"]
+readme = "README.md"
+packages = [{include = "dolist_django"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.6"
+djangorestframework = "^3.14.0"
+django-cors-headers = "^3.13.0"
+pillow = "^9.4.0"
+python-magic = "^0.4.27"
+djangorestframework-simplejwt = "^5.2.2"
+drf-spectacular = "^0.25.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
