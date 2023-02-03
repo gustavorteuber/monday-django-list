@@ -1,25 +1,38 @@
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ModelViewSet
 from core.models import Usuario, Tarefas, Grupos, Topic, conjTopic, CreateGp
-from core.serializers import UsuarioSerializer, UsuarioCreateSerializer, TarefasSerializer, DetailTarefasSerializer, GruposSerializer, DetailGruposSerializer, TopicSerializer, DetailTopicSerializer, conjTopicSerializer, DetailconjTopicSerializer, CreateGpSerializer, DetailCreateGpSerializer
+from core.serializers import (
+    UsuarioSerializer,
+    UsuarioCreateSerializer,
+    TarefasSerializer,
+    DetailTarefasSerializer,
+    GruposSerializer,
+    DetailGruposSerializer,
+    TopicSerializer,
+    DetailTopicSerializer,
+    conjTopicSerializer,
+    DetailconjTopicSerializer,
+    CreateGpSerializer,
+    DetailCreateGpSerializer,
+)
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 
-
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    
     def validate(self, attrs):
         data = super().validate(attrs)
-        data['username'] = self.user.username
-        data['id'] = self.user.id
-        data['email'] = self.user.email
-        data['is_superuser'] = self.user.is_superuser
-        
+        data["username"] = self.user.username
+        data["id"] = self.user.id
+        data["email"] = self.user.email
+        data["is_superuser"] = self.user.is_superuser
+
         return data
+
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
 
 class UsuarioViewSet(ModelViewSet):
     queryset = Usuario.objects.all()
@@ -34,7 +47,7 @@ class UsuarioViewSet(ModelViewSet):
 
 class TarefasViewSet(ModelViewSet):
     queryset = Tarefas.objects.all()
-    serializer_class = TarefasSerializer 
+    serializer_class = TarefasSerializer
     permission_classes = [AllowAny]
 
     def get_serializer_class(self):
@@ -42,9 +55,10 @@ class TarefasViewSet(ModelViewSet):
             return DetailTarefasSerializer
         return TarefasSerializer
 
+
 class GruposViewSet(ModelViewSet):
     queryset = Grupos.objects.all()
-    serializer_class = GruposSerializer 
+    serializer_class = GruposSerializer
     permission_classes = [AllowAny]
 
     def get_serializer_class(self):
@@ -52,9 +66,10 @@ class GruposViewSet(ModelViewSet):
             return DetailGruposSerializer
         return GruposSerializer
 
+
 class TopicViewSet(ModelViewSet):
     queryset = Topic.objects.all()
-    serializer_class = TopicSerializer 
+    serializer_class = TopicSerializer
     permission_classes = [AllowAny]
 
     def get_serializer_class(self):
@@ -62,9 +77,10 @@ class TopicViewSet(ModelViewSet):
             return DetailTopicSerializer
         return TopicSerializer
 
+
 class conjTopicViewSet(ModelViewSet):
     queryset = conjTopic.objects.all()
-    serializer_class = conjTopicSerializer 
+    serializer_class = conjTopicSerializer
     permission_classes = [AllowAny]
 
     def get_serializer_class(self):
@@ -72,12 +88,13 @@ class conjTopicViewSet(ModelViewSet):
             return DetailconjTopicSerializer
         return conjTopicSerializer
 
+
 class CreateGpViewSet(ModelViewSet):
     queryset = CreateGp.objects.all()
-    serializer_class = CreateGpSerializer 
+    serializer_class = CreateGpSerializer
     permission_classes = [AllowAny]
 
     def get_serializer_class(self):
         if self.action in ["list", "retrieve"]:
             return DetailCreateGpSerializer
-        return CreateGpSerializer 
+        return CreateGpSerializer

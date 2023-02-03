@@ -4,8 +4,6 @@ from django.db import models
 from django.utils import timezone
 
 
-
-
 class Usuario(AbstractUser):
     foto = models.ForeignKey(
         Image,
@@ -23,12 +21,10 @@ class CreateGp(models.Model):
     def __str__(self):
         return self.Nome
 
-     
-
 
 class Grupos(models.Model):
     Gp = models.ManyToManyField(CreateGp)
-    Participantes = models.ManyToManyField(Usuario, blank=True)
+    Participantes = models.ManyToManyField(Usuario, blank=True, related_name="grupos")
     Criado = models.DateTimeField(default=timezone.now)
     Alterado = models.DateTimeField(auto_now=True)
 
@@ -41,7 +37,7 @@ class Tarefas(models.Model):
     descricao = models.TextField()
     datainicio = models.DateTimeField(default=timezone.now)
     prazofinal = models.DateTimeField(default=timezone.now)
-    lider = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    lider = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="tarefas")
     grupo = models.ForeignKey(Grupos, on_delete=models.CASCADE)
     Entregue = models.DateTimeField(auto_now=True)
 
@@ -55,11 +51,10 @@ class Topic(models.Model):
     def __str__(self):
         return self.titulo
 
+
 class conjTopic(models.Model):
     Topico = models.ManyToManyField(Topic)
     Tarefa = models.ManyToManyField(Tarefas)
 
     def __str__(self):
         return self.Tarefa
-
-
