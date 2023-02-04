@@ -40,8 +40,8 @@ export default {
 .single-date-picker__date {
   font-size: 10px;
   font-size: 14px;
-  height: 30px;
-  width: 30px;
+  height: 120px;
+  width: 210px;
   display: table-cell;
   vertical-align: middle;
   box-sizing: border-box;
@@ -49,13 +49,12 @@ export default {
 
   &:hover,
   &.single-date-picker__selected {
-    border-radius: 50%;
-    border: 2px solid pink;
+    border: 2px solid #6D28D9;
   }
-
+  
   &.single-date-picker__today {
-    border-radius: 50%;
-    background-image: linear-gradient(to bottom right, #f1b4b9, #d2b0c3);
+    border: 2px solid #6D28D9;
+    background-color: #6c28d936;
   }
 }
 </style>

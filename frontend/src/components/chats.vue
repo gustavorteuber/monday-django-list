@@ -41,7 +41,7 @@ export default {
     <div class="flex flex-row-reverse mb-12">
       <div class="flex flex-col">
         <div
-          class="bg-sky-900 text-white p-6 rounded-3xl rounded-br-none w-96 mb-2"
+          class="bg-violet-900 text-white p-6 rounded-3xl rounded-br-none w-96 mb-2"
         >
           <p class="font-medium mb-1">{{ comentarios.autor.username }}</p>
           <small class="inline-block mb-1">{{ comentarios.texto }}</small>

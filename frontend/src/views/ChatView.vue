@@ -113,7 +113,7 @@ export default {
       </svg>
       <a
         @click="addComment()"
-        class="bg-emerald-900 text-white rounded px-4 py-2"
+        class="bg-violet-700 text-white rounded px-4 py-2"
         >Enviar</a
       >
     </div>

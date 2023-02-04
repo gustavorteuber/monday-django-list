@@ -4,8 +4,8 @@
       class="single-date-picker__arrow left"
       @click="toggleMonth(-1)"
     >
-      <i class="material-icons">
-        keyboard_arrow_left
+      <i class="material-icons" >
+        <img src="../assets/img/icons8-chevron-esquerda-24.png" alt="">
       </i>
     </div>
     <div class="single-date-picker__year">
@@ -16,7 +16,7 @@
       @click="toggleMonth(1)"
     >
       <i class="material-icons">
-        keyboard_arrow_right
+        <img src="../assets/img/icons8-chevron-right-24.png" alt="">
       </i>
     </div>
   </div>
@@ -24,18 +24,18 @@
 
 <script>
 const MONTHS = [
-  'january',
-  'february',
-  'march',
-  'april',
-  'may',
-  'june',
-  'july',
-  'august',
-  'september',
-  'october',
-  'november',
-  'december'
+  'Janeiro',
+  'Fevereiro',
+  'Março',
+  'Abril',
+  'Maio',
+  'Junho',
+  'Julho',
+  'Agosto',
+  'Setembro',
+  'Outubro',
+  'Novembro',
+  'Dezembro'
 ];
 export default {
   props: {
@@ -64,12 +64,12 @@ export default {
 <style lang="scss" scoped>
 .single-date-picker__calendar-month-header {
   padding: 15px;
-  background-image: linear-gradient(to right, #e0caca, #d4b8ca, #c7a3b5);
+  background-color: #6D28D9;
   display: flex;
   justify-content: space-between;
   border-radius: 10px 10px 0 0;
   align-items: center;
-  color: #77505e;
+  color: #ffffff;
 
   .single-date-picker__year {
     font-weight: 900;
@@ -80,4 +80,7 @@ export default {
     cursor: pointer;
   }
 }
+
+
+
 </style>

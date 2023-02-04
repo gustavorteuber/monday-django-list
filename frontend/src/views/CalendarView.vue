@@ -1,25 +1,32 @@
 /* eslint-disable no-console */
 <template>
   <div
-    id="single-date-picker"
-    class="single-date-picker__calendar-view"
+  id="single-date-picker"
+  class="single-date-picker__calendar-view"
   >
-    <CalendarMonthHeader
-      :year="year"
-      :month="month"
-      @toggleMonth="toggleMonth"
-    />
-    <CalendarMonth
-      :dates-per-week="datesPerWeek"
-      :is-today="isToday"
-      :is-selected="isSelected"
-      :week-start-day="weekStartDay"
-      @selectDate="selectDate"
-    />
-  </div>
+  <CalendarMonthHeader
+  :year="year"
+  :month="month"
+  @toggleMonth="toggleMonth"
+  />
+  <CalendarMonth
+  :dates-per-week="datesPerWeek"
+  :is-today="isToday"
+  :is-selected="isSelected"
+  :week-start-day="weekStartDay"
+  @selectDate="selectDate"
+  />
+</div>
+<cards
+v-for="tarefa in tarefas"
+:key="tarefa.id"
+:tarefa="tarefa"
+/>
 </template>
 
 <script>
+import axios from 'axios';
+import cards from '../components/CalendarTask.vue';
 import CalendarMonthHeader from '../components/CalendarMonthHeader';
 import CalendarMonth from '../components/CalendarMonth';
 
@@ -29,7 +36,8 @@ export default {
   name: 'CalendarView',
   components: {
     CalendarMonthHeader,
-    CalendarMonth
+    CalendarMonth,
+    cards
   },
   props: {
     date: {
@@ -51,6 +59,7 @@ export default {
       todayMonth: 0,
       selectedDate: null,
       weekStartDay: 0,
+      tarefas: [],
     }
   },
   computed: {
@@ -136,7 +145,7 @@ export default {
     this.todayDate = date.getDate();
     this.todayYear = date.getFullYear();
     this.todayMonth = date.getMonth();
-
+    this.getAllTasks();
     this.weekStartDay = (this.firstDayOfWeek >= 0 && this.firstDayOfWeek <= 6) ? this.firstDayOfWeek : 0;
   },
   methods: {
@@ -147,6 +156,16 @@ export default {
       }
       return datesInWeek;
     },
+    async getAllTasks() {
+        axios
+         .get(`http://127.0.0.1:8000/tarefa/`)
+         .then((res) => {
+           this.tarefas = res.data;
+         })
+         .catch((error) => {
+           console.log(error);
+         });
+   },
     toggleMonth(direction) {
       let newMonth = this.month + Number(direction);
       let newYear = this.year;
@@ -192,7 +211,7 @@ export default {
 }
 
 .single-date-picker__calendar-view {
-  max-width: 300px;
+  width: 100%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);

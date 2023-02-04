@@ -19,6 +19,7 @@ from core.views import (
     TopicViewSet,
     conjTopicViewSet,
     CreateGpViewSet,
+    ChatsViewSet,
 
 
 )
@@ -35,6 +36,7 @@ router.register(r'creategp', CreateGpViewSet)
 router.register(r'grupos', GruposViewSet)
 router.register(r'tarefa', TarefasViewSet)
 router.register(r'addtopic', TopicViewSet)
+router.register(r'chats', ChatsViewSet)
 router.register(r'conjtopic', conjTopicViewSet)
 
 

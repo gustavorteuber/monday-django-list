@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      daysInWeek: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+      daysInWeek: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
     }
   },
   created() {

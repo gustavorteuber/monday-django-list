@@ -29,7 +29,7 @@ export default {
 
 <template>
   <div class="content">
-    <h3 class="text-2xl font-bold text-left py-2">Pagina Inicial</h3>
+    <h3 class="text-2xl font-bold text-left py-2 text-violet-500">Tarefas:</h3>
     <br>
     <div class="card-group">
       <cards
@@ -76,5 +76,6 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
+
 </style>

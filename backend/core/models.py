@@ -33,6 +33,14 @@ class Grupos(models.Model):
 
 
 class Tarefas(models.Model):
+    foto = models.ForeignKey(
+        Image,
+        related_name="+",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        default="",
+    )
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
     datainicio = models.DateTimeField(default=timezone.now)
@@ -58,3 +66,12 @@ class conjTopic(models.Model):
 
     def __str__(self):
         return self.Tarefa
+
+
+class Chats(models.Model):
+    texto = models.TextField()
+    autor  = models.ForeignKey("core.Usuario",on_delete=models.PROTECT)
+    data = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return self.texto

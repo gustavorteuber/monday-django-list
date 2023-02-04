@@ -41,6 +41,6 @@ export default {
 
 <style scoped>
 tr {
-  color: #614a52;
+  color: #6D28D9;
 }
 </style>

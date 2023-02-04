@@ -1,4 +1,4 @@
-from core.models import Usuario, Grupos, Tarefas, Topic, conjTopic, CreateGp
+from core.models import Usuario, Grupos, Tarefas, Topic, conjTopic, CreateGp, Chats
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
@@ -8,6 +8,7 @@ admin.site.register(Grupos)
 admin.site.register(Usuario)
 admin.site.register(Tarefas)
 admin.site.register(Topic)
+admin.site.register(Chats)
 admin.site.register(conjTopic)
 
 
