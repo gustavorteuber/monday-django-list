@@ -8,6 +8,7 @@ import Config from "@/views/ConfigView.vue";
 import Status from "@/views/StatusView.vue";
 import dashboard from "../views/master/dashboard";
 import Calendar from "@/views/CalendarView.vue";
+import Notification from "@/views/Notification.vue";
 
 const routes = [
   {
@@ -50,7 +51,12 @@ const routes = [
         path: "/calendar",
         name: "Calendar",
         component: Calendar,
-      }
+      },
+      {
+        path: "/notification",
+        name: "Notification",
+        component: Notification,
+      },
     ],
   },
 ];

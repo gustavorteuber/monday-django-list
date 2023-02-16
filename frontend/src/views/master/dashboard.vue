@@ -41,7 +41,10 @@ export default {
 <template>
   <div class="w-screen h-screen flex">
     <!-- Side bar -->
-    <div class="w-[400px] h-full bg-amber-300 text-violet-600" v-show="showSide">
+    <div
+      class="w-[400px] h-full bg-amber-300 text-violet-600"
+      v-show="showSide"
+    >
       <div class="h-[50px] bg-gray-100 flex justify-start items-center">
         <div class="px-[20px]">
           <h3 class="font-bold text-xl">proative.com</h3>
@@ -72,7 +75,7 @@ export default {
               Home
             </router-link>
             <router-link
-              to="/perfil"
+              to="/notification"
               class="inline-flex relative items-center py-[10px] px-[10px] w-full text-sm font-medium rounded-md border-violet-800 hover:bg-violet-300 hover:text-violet-900 transition duration-400 ease-in-out"
             >
               <svg
@@ -126,7 +129,6 @@ export default {
               </svg>
               Calendar
             </router-link>
-            
           </div>
           <div class="h-[50px]">
             <div class="flex items-center">
