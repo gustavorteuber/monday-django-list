@@ -33,10 +33,12 @@ export default {
       this.comentario.autor = this.id;
       await axios.post("http://localhost:8000/chats/", this.comentario);
       await this.getAllComments();
+
+      const comentariosContainer = this.$refs.comentariosContainer;
+      comentariosContainer.scrollTo(0, comentariosContainer.scrollHeight);
     },
     async getAllComments() {
       const comentarios = await axios.get("http://localhost:8000/chats/");
-      this.comentarios = comentarios.data;
       this.comentarios = comentarios.data;
       this.comentarios.forEach(
         (comentario) =>
@@ -52,17 +54,19 @@ export default {
   <section class="overflow-y-auto w-100 overflow-hidden h-5/6">
     <div class="bg-white xl:w-11/12 lg:w-8/12 hidden lg:block">
       <div class="py-15 px-50"></div>
-      <div class="py-50 px-50 overflow-hidden">
-        <chats
-          v-for="comentario in comentarios"
-          :key="comentario.id"
-          :comentarios="comentario"
-        />
-        <div class="flex mb-12">
-          <div class="flex flex-col"></div>
-        </div>
-        <div class="flex flex-row-reverse mb-12">
-          <div class="flex flex-col"></div>
+      <div ref="comentariosContainer">
+        <div class="py-50 px-50 overflow-hidden">
+          <chats
+            v-for="comentario in comentarios"
+            :key="comentario.id"
+            :comentarios="comentario"
+          />
+          <div class="flex mb-12">
+            <div class="flex flex-col"></div>
+          </div>
+          <div class="flex flex-row-reverse mb-12">
+            <div class="flex flex-col"></div>
+          </div>
         </div>
       </div>
     </div>
