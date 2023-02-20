@@ -1,94 +1,146 @@
 <script>
-import { mapState } from "pinia";
-import { useAuthStore } from "@/stores/auth";
-import axios from 'axios'
-import dayjs from 'dayjs'
-import relativeTime from "dayjs/plugin/relativeTime";
- 
-dayjs.extend(relativeTime)
+import { useDark, useToggle } from "@vueuse/core";
 
 export default {
-  props: ["tarefa"],
-  user: {},
-  data() {
-    return {  
-      tarefas: [],
+  setup() {
+    const isDark = useDark();
+    const toggle = useToggle(isDark);
+
+    return {
+      isDark,
+      toggle,
     };
   },
   methods: {
-    async getAllTasks() {
-        axios
-         .get(`http://127.0.0.1:8000/tarefa/`)
-         .then((res) => {
-           this.tarefas = res.data;
-         })
-         .catch((error) => {
-           console.log(error);
-         });
-   },
-   pegarDia(diaInicial, diaFinal) {
+    special() {
+      if (this.isDark == true) {
+        return "inline-flex items-center px-3 py-2 text-sm font-bold text-center text-neutral-900 rounded-lg bg-gradient-to-r to-emerald-600 from-sky-400";
+      } else {
+        return "inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white rounded-lg bg-gradient-to-r to-emerald-600 from-sky-400";
+      }
+    },
 
-    console.log(dayjs(diaInicial).to(diaFinal))
-    let result = dayjs(diaInicial).to(diaFinal)
-    return result;
-   },
+    colorCard() {
+      if (this.isDark == true) {
+        return "max-w-sm border border-emerald-500 rounded-lg shadow bg-neutral-800 m-5 flex flex-col sm:flex-row h-auto w-full";
+      } else {
+        return "max-w-sm border border-emerald-500 rounded-lg shadow bg-white m-5 flex flex-col sm:flex-row h-auto w-full ";
+      }
+    },
+    ColorTitle() {
+      if (this.isDark == true) {
+        return "mb-2 text-2xl font-bold tracking-tight text-emerald-500";
+      } else {
+        return "mb-2 text-2xl font-bold tracking-tight text-emerald-500";
+      }
+    },
+    ColorSubtitle() {
+      if (this.isDark == true) {
+        return "mb-3 font-normal text-gray-400";
+      } else {
+        return "mb-3 font-normal text-gray-700";
+      }
+    },
+    ColorButton() {
+      if (this.isDark == true) {
+        return "inline-flex items-center px-3 py-2 text-sm font-bold text-center text-neutral-900 bg-emerald-600 rounded-lg hover:bg-emerald-800 focus:ring-4 ";
+      } else {
+        return "inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white border border-emerald-500 bg-emerald-600  rounded-lg hover:bg-emerald-800  focus:ring-4";
+      }
+    },
   },
-  computed: {
-    ...mapState(useAuthStore, ["id","username", "foto"]),
-  },
-
 };
 </script>
-
 <template>
-        <!-- 1 card -->
-        <div class="relative bg-white py-6 px-6 rounded-3xl w-64 my-4 shadow-xl">
-            <div class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-violet-500 left-4 -top-6">
-                <!-- svg  -->
-                            <img :src="tarefa.foto.file" alt="" class="w-10 h- rounded-full"/>
-            </div>
-            <div class="mt-8">
-                <p class="text-xl font-semibold my-2">{{ tarefa.titulo }}</p>
-                <div class="flex space-x-2 text-gray-400 text-sm">
-                    <!-- svg  -->
-                     <p>{{ tarefa.descricao }}</p> 
-                </div>
-                <div class="flex space-x-2 text-gray-400 text-sm my-3">
-                    <!-- svg  -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                     <p>{{  pegarDia(tarefa.datainicio, tarefa.prazofinal) }}</p> 
-                </div>
-                <div class="border-t-2"></div>
-
-                <div class="flex justify-between">
-                    <div class="my-2">
-                        <p class="font-semibold text-base mb-2">Team Member</p>
-                        <div class="flex space-x-2">
-                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" 
-                            class="w-6 h-6 rounded-full"/>
-                             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Woman_7.jpg" 
-                            class="w-6 h-6 rounded-full"/>
-                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxSqK0tVELGWDYAiUY1oRrfnGJCKSKv95OGUtm9eKG9HQLn769YDujQi1QFat32xl-BiY&usqp=CAU" 
-                            class="w-6 h-6 rounded-full"/>
-                        </div>
-                    </div>
-                     <div class="my-2">
-                        <p class="font-semibold text-base mb-2">Lider: </p>
-                        <div class="text-base text-gray-400 font-semibold">
-                            <img :src="tarefa.lider.foto.file" alt="" class="w-8 h-8 rounded-full"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div :class="colorCard()">
+    <a href="#"> </a>
+  </div>
+  <div class="flex justify-center mt-20">
+    <div :class="colorCard()">
+      <a href="#"> </a>
+      <div class="p-5">
+        <a href="/login">
+          <h5 :class="ColorTitle()">Plano Free</h5>
+        </a>
+        <p :class="ColorSubtitle()">
+          Aqui temos o Plano Free, no qual apresentamos uma demonstração da
+          plataforma com limitações de uso.
+        </p>
+        <RouterLink to="/login" :class="ColorButton()">
+          Conheça mais!
+          <svg
+            aria-hidden="true"
+            class="w-4 h-4 ml-2 -mr-1"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </RouterLink>
+      </div>
+    </div>
+    <div :class="colorCard()">
+      <a href="#"> </a>
+      <div class="p-5">
+        <a href="/login">
+          <h5 :class="ColorTitle()">Plano Pro</h5>
+        </a>
+        <p :class="ColorSubtitle()">
+          Aqui temos o Plano Pro, no qual é perfeito para quem está iniciando no
+          gerenciamento empresarial.
+        </p>
+        <a href="#" :class="ColorButton()">
+          Conheça mais!
+          <svg
+            aria-hidden="true"
+            class="w-4 h-4 ml-2 -mr-1"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div :class="colorCard()">
+      <a href="#"> </a>
+      <div class="p-5">
+        <a href="login">
+          <h5 :class="ColorTitle()">Plano Premium</h5>
+        </a>
+        <p :class="ColorSubtitle()">
+          Aqui temos o Plano Premium, no qual está desbloqueado todas as
+          funcionalidades e tudo o que o Proative tem a oferecer.
+        </p>
+        <a href="/login" :class="special()">
+          Conheça mais!
+          <svg
+            aria-hidden="true"
+            class="w-4 h-4 ml-2 -mr-1"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
-<style>
-.checkbox:checked {
-  border: none;
-}
-.checkbox:checked + .check-icon {
-  display: flex;
-}
-</style>
+
+<style></style>

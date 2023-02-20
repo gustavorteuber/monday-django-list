@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proative</title>
+    <script
+      src="https://kit.fontawesome.com/ea8c549150.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body>
-    <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
-    </noscript>
+
+  <body :class="colorBody()">
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <script type="module" src="/src/main.js">
+      // import { useDark, useToggle } from "@vueuse/core";
+
+      // export default {
+      //   setup() {
+      //     const isDark = useDark();
+      //     const toggle = useToggle(isDark);
+
+      //     return {
+      //       isDark,
+      //       toggle,
+      //     };
+      //   },
+      //   methods: {
+      //     colorBody() {
+      //       if (this.isDark == true) {
+      //         return "bg-neutral-900";
+      //       } else {
+      //         return "bg-white";
+      //       }
+      //     },
+      //   },
+      // };
+    </script>
   </body>
 </html>
